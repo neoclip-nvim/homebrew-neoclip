@@ -26,17 +26,26 @@ class Neoclip < Formula
     prefix.install "lua"
   end
 
+  depends_on "nvim" => :test
+
+  # Test requires either x11 or wayoand or macosx
   test do
-    # TODO run neovim +checkhealth
-    # `test do` will create, run in and delete a temporary directory.
-    #
-    # This test will fail and we won't accept that! For Homebrew/homebrew-core
-    # this will need to be a test that verifies the functionality of the
-    # software. Run the test with `brew test neoclip`. Options passed
-    # to `brew install` such as `--HEAD` also need to be provided to `brew test`.
-    #
-    # The installed folder is not in the path, so use the entire path to any
-    # executables being tested: `system bin/"program", "do", "something"`.
-    system "false"
+    health = 'health.log'
+    system "nvim", "--headless",
+      # set up
+      "+set\ rtp+=#{prefix}",
+      "+lua\ require('neoclip'):setup()",
+      # execute
+      "'+checkhealth neoclip'", "+w!#{health}", "+qa"
+
+    # uncomment to debug
+    # system "cat", health
+
+    # check expectations
+    system "grep", "OK", health
+    system "grep", "-v", "FAIL", health
+
+    # cleanup
+    system "rm", health
   end
 end
