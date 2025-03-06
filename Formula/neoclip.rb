@@ -1,11 +1,13 @@
 class Neoclip < Formula
   desc "Neovim multi-platform clipboard provider."
   homepage "https://github.com/matveyt/neoclip"
-  # TODO add version
   license "Unlicense"
   head "https://github.com/matveyt/neoclip.git"
+  #
+  url "https://github.com/matveyt/neoclip/archive/adfb1430c7308f0b3036f89b037509b3d0b4610a.zip"
+  version "2024.08.23.1"
 
-  keg_only "neovim plugin"
+  keg_only "it is a neovim plugin"
 
   depends_on "cmake" => :build
   depends_on "extra-cmake-modules" => :build
