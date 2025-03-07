@@ -31,22 +31,35 @@ class Neoclip < Formula
 
   # Test requires either x11 or wayoand or macosx
   test do
-    health = "health.log"
-    system "nvim", "--headless",
-      # set up
-      "+set rtp+=#{prefix}",
-      "+lua require('neoclip'):setup()",
-      # execute
-      "'+checkhealth neoclip'", "+w!#{health}", "+qa"
+    script = (testpath/"test.lua")
 
-    # uncomment to debug
-    # system "cat", health
+    # TODO: Report which driver caused fail. Not just fail
+    script.write "
+        vim.opt.rtp:append('#{prefix}')
 
-    # check expectations
-    system "grep", "OK", health
-    system "grep", "-v", "FAIL", health
+        local function tryRequire (x)
+          local ok, result = pcall(require, x)
+          if not ok then
+            vim.cmd('1cquit')
+          end
+        end
 
-    # cleanup
-    rm health
+        if vim.fn.has('win32') == 1 then
+          tryRequire('neoclip.w32-driver')
+        end
+
+        if vim.fn.has('mac') == 1 then
+          tryRequire('neoclip.mac-driver')
+        end
+
+        if vim.fn.has('unix') == 1 then
+          tryRequire('neoclip.x11-driver')
+          tryRequire('neoclip.x11uv-driver')
+          tryRequire('neoclip.wl-driver')
+          tryRequire('neoclip.wluv-driver')
+        end
+    "
+
+    system "nvim", "-S", script, "--headless", "+q"
   end
 end
