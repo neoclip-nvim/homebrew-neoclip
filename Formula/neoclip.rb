@@ -10,12 +10,11 @@ class Neoclip < Formula
   keg_only "it is a neovim plugin"
 
   depends_on "cmake" => :build
-  depends_on "extra-cmake-modules" => :build
-  depends_on "libffi" => :build
   depends_on "luajit" => :build
   depends_on "pkg-config" => :build
   depends_on "nvim" => :test
   on_linux do
+    depends_on "extra-cmake-modules" => :build
     depends_on "libx11" => :build
     depends_on "wayland" => :build
     depends_on "wayland-protocols" => :build # it may be redundant
