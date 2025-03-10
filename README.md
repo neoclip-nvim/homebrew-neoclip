@@ -1,18 +1,19 @@
-# Shofel Neoclip
+# Neoclip
 
-## How do I install these formulae?
+This is a homebrew formula for [neoclip](https://matveyt/neoclip), which is a multi-platform clipboard provider for Neovim. 
 
-`brew install shofel/neoclip/<formula>`
+Please refer to [the neoclip's documentation](https://github.com/matveyt/neoclip/blob/master/README.md#installation).
 
-Or `brew tap shofel/neoclip` and then `brew install <formula>`.
-
-Or, in a [`brew bundle`](https://github.com/Homebrew/homebrew-bundle) `Brewfile`:
-
-```ruby
-tap "shofel/neoclip"
-brew "<formula>"
+## Development
+When changing the formula you can test it locally
+``` sh
+brew uninstall neoclip
+brew install --build-from-source neoclip-nvim/neoclip/neoclip --verbose --debug \
+&& brew test neoclip
 ```
-
-## Documentation
-
+And also lint
+``` sh
+brew audit neoclip --strict --fix
+```
+## Homebrew Documentation
 `brew help`, `man brew` or check [Homebrew's documentation](https://docs.brew.sh).
