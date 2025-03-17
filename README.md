@@ -5,7 +5,7 @@ This is a homebrew formula for [neoclip](https://matveyt/neoclip), which is a mu
 Please refer to [the neoclip's documentation](https://github.com/matveyt/neoclip/blob/master/README.md#installation).
 
 ## Install
-You can install both lua and binaries with [lazy.nvim](https://github.com/folke/lazy.nvim):
+You can install everything needed for neoclip with [lazy.nvim](https://github.com/folke/lazy.nvim) and Homebrew:
 ``` lua
 spec = {
   'matveyt/neoclip',
