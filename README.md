@@ -6,7 +6,7 @@ Please refer to [the neoclip's documentation](https://github.com/matveyt/neoclip
 
 ## Install
 You can install both lua and binaries with [lazy.nvim](https://github.com/folke/lazy.nvim):
-```
+``` lua
 spec = {
   'matveyt/neoclip',
   build = [[
