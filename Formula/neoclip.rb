@@ -1,9 +1,9 @@
 class Neoclip < Formula
   desc "Neovim multi-platform clipboard provider"
   homepage "https://github.com/matveyt/neoclip"
-  url "https://github.com/matveyt/neoclip/archive/adfb1430c7308f0b3036f89b037509b3d0b4610a.tar.gz"
-  version "2024.08.23.1"
-  sha256 "944b6b00a0e5c3d497d09d25c7d4c75bd04ddfcba2e85abf6309c94f3434591b"
+  url "https://github.com/matveyt/neoclip/archive/dcff26d98fde73664b7dffb916834b544ed50c11.tar.gz"
+  version "2025.03.17.1"
+  sha256 "f451bbcfa1df3700ab506ef359914a31e23e7af81b02fa870564bdd4f0ecc954"
   license "Unlicense"
   head "https://github.com/matveyt/neoclip.git", branch: "master"
 
@@ -32,7 +32,6 @@ class Neoclip < Formula
   test do
     script = (testpath/"test.lua")
 
-    # TODO: Report which driver caused fail. Not just fail
     script.write "
         vim.opt.rtp:append('#{prefix}')
 
